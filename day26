@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node{
+	int info;
+	struct node *next;
+	struct node* prev;
+};
+
+int main(){
+	struct node* head = NULL;
+	struct node* tail = NULL;
+	int n;
+	printf("no, of elements in node: ");
+	scanf("%d", &n);
+	while (n>0)
+	{
+		int val;
+		struct node* new = (struct node*) malloc (sizeof(struct node));
+		printf("enter LL element: ");
+		scanf("%d", &val);
+		new->info = val;
+		new->next = NULL;
+		if (head == NULL)
+		{
+			new->prev = NULL;
+			head = new;
+			tail = new;
+		}
+		else 
+		{
+    			tail->next = new;
+    			new->prev = tail;
+    			tail = new;
+		}
+		n--;
+	}		
+	struct node *temp = head;
+	while(temp != NULL)
+	{
+		printf("%d", temp->info);
+		temp = temp->next;
+	}
+
+}
